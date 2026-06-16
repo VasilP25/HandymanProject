@@ -205,3 +205,251 @@ Rules:
 Ad.CreatedBy → Users.id
 
 Ad.Region → Region.id
+
+## Additional Project Rules
+
+### Existing Project Structure
+
+Always follow the existing folder structure.
+
+```txt
+src/
+├── app/
+├── components/
+├── hooks/
+├── server/
+├── db/
+```
+
+Do not create alternative folders for the same purpose.
+
+Examples:
+
+* Components must be stored in `src/components`
+* Custom hooks must be stored in `src/hooks`
+* Backend operations must be stored in `src/server`
+* Database-related files must be stored in `src/db`
+
+---
+
+### Database Safety
+
+The existing database schema is considered the source of truth.
+
+Do not:
+
+* Create new tables
+* Create new columns
+* Rename tables
+* Rename columns
+* Change column types
+* Create migrations
+* Create indexes
+* Modify relationships
+
+without explicit approval.
+
+If a feature requires schema changes, explain why and ask for confirmation first.
+
+---
+
+### Database Query Rules
+
+Always fetch the minimum amount of data required.
+
+Preferred:
+
+* Use WHERE clauses
+* Use LIMIT when appropriate
+* Select only required columns
+* Filter in the database query
+
+Avoid:
+
+* Loading full tables
+* Client-side filtering when database filtering is possible
+* Selecting columns that are not used
+
+Good example:
+
+```ts
+const ads = await db
+  .select({
+    id: ad.id,
+    title: ad.Title,
+    price: ad.Price,
+  })
+  .from(ad)
+  .where(eq(ad.Region, regionId));
+```
+
+Bad example:
+
+```ts
+const ads = await db.select().from(ad);
+
+const filteredAds = ads.filter(
+  x => x.Region === regionId
+);
+```
+
+---
+
+### Relationships
+
+Known relationships:
+
+```txt
+Ad.CreatedBy → Users.id
+Ad.Region → Region.id
+```
+
+When related data is required, use joins instead of additional unnecessary queries.
+
+Example:
+
+```ts
+const ads = await db
+  .select()
+  .from(ad)
+  .leftJoin(users, eq(ad.CreatedBy, users.id));
+```
+
+---
+
+### Authentication Rules
+
+Users.Password:
+
+* Must always be hashed.
+* Must never be sent to the frontend.
+* Must never be returned from API responses.
+* Must never be logged.
+
+Users.Verified:
+
+* Indicates whether the account has been verified.
+
+Users.Role:
+
+* Used for authorization.
+* Always validate permissions before privileged operations.
+
+---
+
+### Frontend Rules
+
+The frontend should be:
+
+* Modern
+* Clean
+* Responsive
+* Fast
+* Easy to use
+
+Use:
+
+* Tailwind CSS
+* Consistent spacing
+* Rounded corners
+* Subtle shadows
+* Smooth transitions
+* Hover states
+* Loading states
+* Error states
+* Empty states
+
+Avoid:
+
+* Excessive animations
+* Excessive gradients
+* Cluttered layouts
+* Overly muted designs
+* Inline styles when Tailwind can be used
+
+---
+
+### Component Rules
+
+Before creating a new component:
+
+1. Check whether a reusable component already exists.
+2. Reuse existing components whenever possible.
+3. Extract reusable UI into shared components.
+
+Avoid components exceeding 300 lines whenever possible.
+
+If a component becomes too large:
+
+* Split UI into child components.
+* Move logic into hooks.
+* Move backend operations into server files.
+
+---
+
+### Hook Rules
+
+Custom hooks belong in:
+
+```txt
+src/hooks/
+```
+
+Use hooks for:
+
+* Data fetching
+* Form logic
+* State management
+* Reusable business logic
+
+Do not place backend logic inside hooks.
+
+---
+
+### Backend Rules
+
+Backend operations belong in:
+
+```txt
+src/server/
+```
+
+Organize files by domain.
+
+Example:
+
+```txt
+src/server/
+├── ads.ts
+├── users.ts
+├── auth.ts
+```
+
+Do not place database queries directly inside page components unless absolutely necessary.
+
+---
+
+### Code Quality Checklist
+
+Before completing any task verify:
+
+* No duplicated code exists.
+* Reusable components have been extracted.
+* Database queries are optimized.
+* Unused code has been removed.
+* Types are properly defined.
+* Responsive behavior works.
+* Error handling exists.
+* Loading states exist where appropriate.
+* Existing project conventions are respected.
+
+---
+
+### If Unsure
+
+If any requirement is unclear:
+
+* Ask for clarification.
+* Do not make assumptions about database structure.
+* Do not invent tables, columns, relationships, or business rules.
+* Use only information explicitly defined in this document.
