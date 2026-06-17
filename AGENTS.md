@@ -4,7 +4,7 @@
 
 This project is built with:
 
-* Next.js
+* Next.js + Typescript
 * NeonDB (PostgreSQL)
 * Drizzle ORM
 * Tailwind CSS
