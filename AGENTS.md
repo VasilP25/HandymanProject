@@ -206,6 +206,20 @@ Ad.CreatedBy → Users.id
 
 Ad.Region → Region.id
 
+## DATABASE credentials
+
+Database credentials are stored in the .env file.
+
+Rules:
+
+* Never hardcode database credentials.
+* Always use environment variables.
+* Read database connection information from .env.
+* Do not create duplicate connection strings in code.
+* Never expose secrets to the frontend.
+* Never commit secrets to source control.
+* If a required environment variable is missing, inform the user instead of inventing placeholder values.
+
 ## Additional Project Rules
 
 ### Existing Project Structure
@@ -453,3 +467,94 @@ If any requirement is unclear:
 * Do not make assumptions about database structure.
 * Do not invent tables, columns, relationships, or business rules.
 * Use only information explicitly defined in this document.
+
+## SEO Requirements
+
+The application should follow SEO best practices whenever possible.
+
+Rules:
+
+* Prefer Server Components when SEO is important.
+* Generate meaningful page titles.
+* Generate meaningful meta descriptions.
+* Use semantic HTML elements.
+* Use proper heading hierarchy (h1, h2, h3, etc.).
+* Every page should have a single primary h1.
+* Images should always include descriptive alt text.
+* Avoid rendering important content only after client-side hydration.
+* Use clean and readable URLs.
+* Avoid duplicate content when possible.
+
+### Structured Data
+
+When appropriate, use Schema.org structured data to improve search engine visibility.
+
+Examples:
+
+* Product
+* ItemList
+* BreadcrumbList
+* Organization
+* WebSite
+
+### Performance
+
+SEO-related performance is important.
+
+Prioritize:
+
+* Fast page loads
+* Optimized images
+* Lazy loading when appropriate
+* Minimal client-side JavaScript
+* Efficient database queries
+
+### Accessibility
+
+Accessibility should be considered during development.
+
+Requirements:
+
+* Labels for form inputs
+* Accessible buttons
+* Keyboard navigation support
+* Proper ARIA attributes when needed
+
+### Metadata
+
+Every page should include:
+
+* title
+* description
+
+When applicable also include:
+
+* Open Graph metadata
+* Twitter metadata
+
+### URL Structure
+
+Use descriptive URLs.
+
+Good examples:
+
+```txt
+/ad/123-gaming-laptop
+/category/laptops
+/region/sofia
+```
+
+Avoid:
+
+```txt
+/page?id=123
+/item?x=45
+```
+
+### Search Engine Friendliness
+
+Whenever possible:
+
+* Make content crawlable.
+* Avoid hiding important content behind unnecessary client-side rendering.
+* Prefer server-rendered content for pages that should rank in search engines.
