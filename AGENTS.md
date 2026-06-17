@@ -558,3 +558,75 @@ Whenever possible:
 * Make content crawlable.
 * Avoid hiding important content behind unnecessary client-side rendering.
 * Prefer server-rendered content for pages that should rank in search engines.
+
+## Business Context
+
+This application is a platform for apartment owners to share reviews and opinions about contractors, craftsmen, and renovation professionals.
+
+The main purpose of the platform is to help users:
+
+* Find reliable contractors.
+* Read reviews from other customers.
+* Share experiences with contractors.
+* Compare professionals before hiring them.
+* Avoid low-quality services.
+
+Examples of professionals:
+
+* Electricians
+* Plumbers
+* Painters
+* Flooring specialists
+* Tile installers
+* General renovation contractors
+* Interior finishing specialists
+
+### Core Concept
+
+Each advertisement/review represents a contractor or service provider.
+
+Users can:
+
+* Create listings.
+* Describe their experience.
+* Provide pricing information.
+* Specify the region where the service was performed.
+* Browse contractors by region.
+* Search for specific services.
+
+### User Experience Goals
+
+The platform should focus on:
+
+* Trust
+* Transparency
+* Easy browsing
+* Easy searching
+* Clear presentation of reviews
+* Mobile-friendly design
+
+### Content Priority
+
+The most important information should be:
+
+1. Contractor name
+2. Review title
+3. Rating (if implemented)
+4. Price information
+5. Region
+6. Detailed review
+7. Author information
+
+### Future Features
+
+When suggesting improvements, prioritize features relevant to contractor reviews, such as:
+
+* Ratings
+* Review scores
+* Photo uploads
+* Service categories
+* Verified reviews
+* Search and filtering
+* Regional browsing
+
+Do not suggest features unrelated to contractor review platforms unless explicitly requested.
