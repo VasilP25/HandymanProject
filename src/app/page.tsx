@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { getRegions } from "@/server/regions";
+
 const serviceTypes = [
   "Electricians",
   "Plumbers",
@@ -46,7 +48,9 @@ const recentReviews = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const regions = await getRegions();
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
       <section className="border-b border-slate-200 bg-white">
@@ -99,13 +103,19 @@ export default function Home() {
               <label className="sr-only" htmlFor="region">
                 Region
               </label>
-              <input
-                className="min-h-12 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
+              <select
+                className="min-h-12 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-950 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
                 id="region"
                 name="region"
-                placeholder="Region"
-                type="search"
-              />
+                defaultValue=""
+              >
+                <option value="">All regions</option>
+                {regions.map((region) => (
+                  <option key={region.id} value={region.id}>
+                    {region.name}
+                  </option>
+                ))}
+              </select>
               <button
                 className="min-h-12 rounded-md bg-cyan-700 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-cyan-200"
                 type="submit"
